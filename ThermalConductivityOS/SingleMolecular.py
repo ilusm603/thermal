@@ -20,18 +20,23 @@ class SingleMolecular:
         return info + "\n" + data
     
     def getMF(self):
+        # return the MF of the SingleMolecular
         return self.MF
     
     def setMF(self,MF):
+        # set the new MF of the SingleMolecular
         self.MF  = MF
     
     def getName(self):
+        # return the Name of the SingleMolecular
         return self.Name
     
     def setName(self,Name):
+        # set the new Name of the SingleMolecular
         self.Name  = Name
               
     def getValueOfK(self,temperature):
+        # return the thermal conductivity of the SingleMolecular with specific temperature
         if temperature < 100:
             temperature = 100
         elif temperature > 600:
@@ -40,6 +45,7 @@ class SingleMolecular:
         return self.TCList[tem-1]
         
     def setValueofK(self,temperature,tcValue):
+        # set the new thermal conductivity of the SingleMolecular with specific temperature
         if temperature < 100:
             temperature = 100
         elif temperature > 600:
@@ -48,6 +54,7 @@ class SingleMolecular:
         self.TCList[tem-1] = tcValue
             
     def curveFitNp(self, degree):
+        # draw the curve fitting of the SingleMolecular with least squares method
         x = np.array([100,200,300,400,500,600])
         y = np.copy(self.TCList)
         index = np.isfinite(y)
@@ -69,6 +76,7 @@ class SingleMolecular:
         plt.show()
        
     def curveFitSVR(self, degree):
+        # draw the curve fitting of the SingleMolecular with SVR method
         X = np.array([100,200,300,400,500,600])
         X = X.reshape(6,1)
         
